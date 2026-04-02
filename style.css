@@ -356,6 +356,45 @@ nav.main-nav a:hover {
   transform: translateY(-2px);
 }
 
+.social-nav button {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text2);
+  font-size: 15px;
+  border: 1px solid var(--border);
+  text-decoration: none;
+  transition: all 0.3s;
+}
+.social-nav button:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--glass);
+  transform: translateY(-2px);
+}
+#mute-toggle {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background: var(--glass);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
+}
+
+#mute-toggle:hover {
+  transform: scale(1.1) rotate(15deg);
+}
+
 #theme-toggle {
   width: 44px;
   height: 44px;
@@ -650,6 +689,141 @@ nav.main-nav a:hover {
   animation: blink 1.5s 0.5s infinite;
 }
 
+/* /* Clock  */
+
+.clock-digital {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--accent);
+  font-family: var(--font-body);
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 4px 12px;
+  transition: color var(--transition);
+}
+
+.clock .clock-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  background: none !important;
+  width: 100%;
+  padding: 0;
+}
+.clock-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* center vertically */
+  gap: 12px;
+  width: 150px; /* Adjust size as needed */
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.08); /* glass effect */
+  backdrop-filter: blur(10px); /* glass blur */
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  color: var(--text);
+  margin: 0 auto; /* center horizontally */
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* Optional hover effect */
+.clock-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+}
+
+/* SVG clock */
+#hero-clock {
+  width: 90px;
+  height: 90px;
+  color: var(--text);
+  filter: drop-shadow(0 4px 16px var(--shadow));
+  transition: color var(--transition);
+}
+
+/* Digital clock below the SVG */
+.clock-digital {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--accent);
+  font-family: var(--font-body);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 12px;
+  padding: 6px 14px;
+  text-align: center;
+  width: fit-content;
+}
+.card-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.stat-box {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+}
+.stat-box .stat-val {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+}
+.stat-box .stat-label {
+  font-size: 11px;
+  color: var(--text2);
+  margin-top: 4px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.card-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-chip {
+  padding: 5px 12px;
+  border-radius: 100px;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.card-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 13px;
+  color: var(--text2);
+}
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22c55e;
+  animation: blink 1.5s 0.5s infinite;
+}
+
 /* ============================================================
          SECTION HEADER
       ============================================================ */
@@ -716,6 +890,13 @@ nav.main-nav a:hover {
   box-shadow: 0 20px 60px var(--shadow);
   transform-style: preserve-3d;
   transition: transform 0.4s;
+}
+
+.about-img-box img {
+  width: 100%; /* scale based on height */
+  height: 100%; /* fit container height */
+  /* maintain aspect ratio */
+  border-radius: 20px;
 }
 .about-img-box:hover {
   transform: rotateY(5deg) rotateX(-3deg);
@@ -1019,6 +1200,170 @@ nav.main-nav a:hover {
   gap: 16px;
 }
 
+/* ============================================================
+         TIMELINE (EXPERIENCE)
+      ============================================================ */
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+
+.tl-item {
+  display: grid;
+  grid-template-columns: 44px 2px 1fr;
+  gap: 0 16px;
+  padding-bottom: 40px;
+  position: relative;
+}
+.tl-item:last-child {
+  padding-bottom: 0;
+}
+.tl-item:last-child .tl-line {
+  display: none;
+}
+
+.tl-dot {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--logo-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 4px 20px var(--shadow);
+  position: relative;
+  z-index: 1;
+}
+
+.tl-line {
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  margin: 4px auto 0;
+  opacity: 0.3;
+}
+
+.tl-card {
+  background: var(--card);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 8px;
+  transition:
+    transform 0.3s,
+    box-shadow 0.3s;
+  grid-column: 3;
+}
+.tl-card:hover {
+  transform: translateX(6px);
+  box-shadow: 0 12px 40px var(--shadow);
+}
+
+.tl-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.tl-badge {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 3px 10px;
+  border-radius: 100px;
+}
+.tl-badge-green {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+.tl-badge-purple {
+  background: rgba(168, 85, 247, 0.15);
+  color: #a855f7;
+}
+.tl-badge-orange {
+  background: rgba(249, 115, 22, 0.15);
+  color: #f97316;
+}
+.tl-badge-blue {
+  background: rgba(59, 130, 246, 0.15);
+  color: #3b82f6;
+}
+
+.tl-date {
+  font-size: 12px;
+  color: var(--text2);
+  font-weight: 500;
+}
+
+.tl-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+.tl-desc {
+  font-size: 14px;
+  color: var(--text2);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.tl-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.hack-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 4px;
+}
+.hack-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 12px;
+  background: var(--glass);
+  border: 1px solid var(--border);
+}
+.hack-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+.hack-item strong {
+  display: block;
+  font-size: 14px;
+  color: var(--text);
+}
+.hack-item span {
+  font-size: 12px;
+  color: var(--text2);
+}
+
+/* ============================================================
+         TYPEWRITER CURSOR
+      ============================================================ */
+.typewriter-cursor {
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  background: var(--accent);
+  margin-left: 4px;
+  vertical-align: text-bottom;
+  animation: blink 1s infinite;
+}
 /* ============================================================
          FOOTER
       ============================================================ */

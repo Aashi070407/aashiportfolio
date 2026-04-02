@@ -87,40 +87,182 @@
  
     drawCanvas();
  
-    /* ============================================================
-       THEMES
-    ============================================================ */
-    const themes = [
-      { name: "spring", icon: "🌸", label: "Spring" },
-      { name: "summer", icon: "☀️", label: "Summer" },
-      { name: "autumn", icon: "🍂", label: "Autumn" },
-      { name: "rainy",  icon: "🌧️", label: "Rainy"  },
-      { name: "winter", icon: "❄️", label: "Winter" },
-    ];
-    let currentTheme = 0;
+//     /* ============================================================
+//        THEMES
+//     ============================================================ */
+//     const themes = [
+//       { name: "spring", icon: "🌸", label: "Spring" },
+//       { name: "summer", icon: "☀️", label: "Summer" },
+//       { name: "autumn", icon: "🍂", label: "Autumn" },
+//       { name: "rainy",  icon: "🌧️", label: "Rainy"  },
+//       { name: "winter", icon: "❄️", label: "Winter" },
+//     ];
+//     let currentTheme = 0;
  
-    const savedTheme = localStorage.getItem("aashi-theme");
-    if (savedTheme) {
-      const idx = themes.findIndex(t => t.name === savedTheme);
-      if (idx !== -1) { currentTheme = idx; }
-    }
+//     const savedTheme = localStorage.getItem("aashi-theme");
+//     if (savedTheme) {
+//       const idx = themes.findIndex(t => t.name === savedTheme);
+//       if (idx !== -1) { currentTheme = idx; }
+//     }
  
-    function applyTheme(idx) {
-      themes.forEach(t => document.body.classList.remove(t.name));
-      document.body.classList.add(themes[idx].name);
-      document.getElementById("theme-toggle").textContent = themes[idx].icon;
-      localStorage.setItem("aashi-theme", themes[idx].name);
-      updateCursorColors();
-      updateParticles(themes[idx].name);
-    }
+//     function applyTheme(idx) {
+//       themes.forEach(t => document.body.classList.remove(t.name));
+//       document.body.classList.add(themes[idx].name);
+//       document.getElementById("theme-toggle").textContent = themes[idx].icon;
+      
+//       localStorage.setItem("aashi-theme", themes[idx].name);
+//       updateCursorColors();
+//       updateParticles(themes[idx].name);
+//       // playThemeSong(themes[idx].name); 
+//     }
  
-    applyTheme(currentTheme);
+//     applyTheme(currentTheme);
  
-    document.getElementById("theme-toggle").addEventListener("click", () => {
-      currentTheme = (currentTheme + 1) % themes.length;
-      applyTheme(currentTheme);
-    });
- 
+//     document.getElementById("theme-toggle").addEventListener("click", () => {
+//       currentTheme = (currentTheme + 1) % themes.length;
+//       applyTheme(currentTheme);
+//     });
+//     // ============-======== song ------------------------
+// // // ============ THEME SONGS ============
+// const themeSongs = {
+//   spring: "songs/spring.mp3",
+//   summer: "songs/summer.mp3",
+//   autumn: "songs/autumn.mp3",
+//   rainy:  "songs/rainy.mp3",
+//   winter: "songs/winter.mp3"
+// };
+
+// const audio = document.getElementById("bg-music");
+// const muteBtn = document.getElementById("mute-toggle");
+// let isPlaying = false;
+
+// //// Call this every time theme changes
+// // function playThemeSong(themeName) {
+// //   const newSrc = themeSongs[themeName];
+
+// //   // Only swap if song actually changed
+// //   if (!audio.src.endsWith(newSrc)) {
+// //     audio.src = newSrc;
+// //     audio.volume = 0.3;
+// //   }
+
+//   // Only play if user has already pressed play
+//   if (isPlaying) {
+//     audio.play().catch(() => {});
+//   }
+// // }
+
+// // // Play/Pause toggle button
+// // muteBtn.addEventListener("click", () => {
+// //   if (!audio.src) {
+// //     // First ever click — load current theme song
+// //     audio.src = themeSongs[themes[currentTheme].name];
+// //     audio.volume = 0.3;
+// //   }
+
+// //   if (isPlaying) {
+// //     audio.pause();
+// //     isPlaying = false;
+// //     muteBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+// //   } else {
+// //     audio.play().catch(() => {});
+// //     isPlaying = true;
+// //     muteBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+// //   }
+// // });
+
+// // Also stop/start on tab visibility change (good UX)
+// document.addEventListener("visibilitychange", () => {
+//   if (document.hidden) {
+//     audio.pause();
+//   } else if (isPlaying) {
+//     audio.play().catch(() => {});
+//   }
+// });
+
+
+/* ============================================================
+   THEMES
+============================================================ */
+const themes = [
+  { name: "spring", icon: "🌸", label: "Spring" },
+  { name: "summer", icon: "☀️", label: "Summer" },
+  { name: "autumn", icon: "🍂", label: "Autumn" },
+  { name: "rainy",  icon: "🌧️", label: "Rainy"  },
+  { name: "winter", icon: "❄️", label: "Winter" },
+];
+let currentTheme = 0;
+
+// ✅ Moved UP here so they exist before applyTheme() runs
+const audio = document.getElementById("bg-music");
+const muteBtn = document.getElementById("mute-toggle");
+let isPlaying = false;
+
+const themeSongs = {
+  spring: "songs/spring.mp3",
+  summer: "songs/summer.mp3",
+  autumn: "songs/autumn.mp3",
+  rainy:  "songs/rainy.mp3",
+  winter: "songs/winter.mp3"
+};
+
+function playThemeSong(themeName) {
+  const newSrc = themeSongs[themeName];
+  if (!audio.src.endsWith(newSrc)) {
+    audio.src = newSrc;
+    audio.volume = 0.3;
+  }
+  if (isPlaying) {
+    audio.play().catch(() => {});
+  }
+}
+
+const savedTheme = localStorage.getItem("aashi-theme");
+if (savedTheme) {
+  const idx = themes.findIndex(t => t.name === savedTheme);
+  if (idx !== -1) currentTheme = idx;
+}
+
+function applyTheme(idx) {
+  themes.forEach(t => document.body.classList.remove(t.name));
+  document.body.classList.add(themes[idx].name);
+  document.getElementById("theme-toggle").textContent = themes[idx].icon;
+  localStorage.setItem("aashi-theme", themes[idx].name);
+  updateCursorColors();
+  updateParticles(themes[idx].name);
+  playThemeSong(themes[idx].name); // ✅ now audio is defined when this runs
+}
+
+applyTheme(currentTheme);
+
+document.getElementById("theme-toggle").addEventListener("click", () => {
+  currentTheme = (currentTheme + 1) % themes.length;
+  applyTheme(currentTheme);
+});
+
+muteBtn.addEventListener("click", () => {
+  if (!audio.src) {
+    audio.src = themeSongs[themes[currentTheme].name];
+    audio.volume = 0.3;
+  }
+  if (isPlaying) {
+    audio.pause();
+    isPlaying = false;
+    muteBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+  } else {
+    audio.play().catch(() => {});
+    isPlaying = true;
+    muteBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+  }
+});
+
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) {
+    audio.pause();
+  } else if (isPlaying) {
+    audio.play().catch(() => {});
+  }
+});
     /* ============================================================
        PARTICLES
     ============================================================ */
@@ -197,9 +339,23 @@
             `;
             layer.appendChild(p);
           }
-        }
-      }
+        }// Add autumn case to updateParticles()
+} else if (theme === "autumn") {
+  const layer = document.getElementById("layer-autumn");
+  layer.classList.add("active");
+  if (!layer.children.length) {
+    for (let i = 0; i < 20; i++) {
+      const p = document.createElement("span");
+      p.className = "particle";
+      p.textContent = ["🍂","🍁","🍃"][Math.floor(Math.random()*3)];
+      p.style.cssText = `left:${Math.random()*100}vw;font-size:${12+Math.random()*16}px;animation-duration:${7+Math.random()*9}s;animation-delay:${-Math.random()*8}s;`;
+      layer.appendChild(p);
     }
+  }
+}
+      }
+    
+    
  
     /* ============================================================
        3D CARD MOUSE TILT
@@ -283,3 +439,62 @@
         e.target.reset();
       }, 3000);
     });
+
+
+
+    //  ============================================================
+    //    ANALOG CLOCK
+    // ========================================================== 
+    const ticksG = document.getElementById("clock-ticks");
+    for (let i = 0; i < 12; i++) {
+      const angle = (i / 12) * 360;
+      const rad = (angle - 90) * Math.PI / 180;
+      const isMain = i % 3 === 0;
+      const r1 = isMain ? 36 : 39, r2 = 42;
+      const x1 = 50 + r1 * Math.cos(rad), y1 = 50 + r1 * Math.sin(rad);
+      const x2 = 50 + r2 * Math.cos(rad), y2 = 50 + r2 * Math.sin(rad);
+      const line = document.createElementNS("http://www.w3.org/2000/svg","line");
+      line.setAttribute("x1", x1); line.setAttribute("y1", y1);
+      line.setAttribute("x2", x2); line.setAttribute("y2", y2);
+      line.setAttribute("stroke", "currentColor");
+      line.setAttribute("stroke-width", isMain ? "2.5" : "1");
+      line.setAttribute("stroke-linecap", "round");
+      if (ticksG) ticksG.appendChild(line);
+    }
+ 
+    function updateClock() {
+      const now = new Date();
+      const h = now.getHours() % 12, m = now.getMinutes(), s = now.getSeconds();
+      const ms = now.getMilliseconds();
+      const sDeg = (s + ms / 1000) * 6;
+      const mDeg = (m + s / 60) * 6;
+      const hDeg = (h + m / 60) * 30;
+ 
+      function handCoords(deg, len) {
+        const r = (deg - 90) * Math.PI / 180;
+        return { x: 50 + len * Math.cos(r), y: 50 + len * Math.sin(r) };
+      }
+ 
+      const hPt = handCoords(hDeg, 22);
+      const mPt = handCoords(mDeg, 30);
+      const sPt = handCoords(sDeg, 34);
+ 
+      const hourHand = document.getElementById("clock-hour");
+      const minHand  = document.getElementById("clock-min");
+      const secHand  = document.getElementById("clock-sec");
+      if (hourHand) { hourHand.setAttribute("x2", hPt.x); hourHand.setAttribute("y2", hPt.y); }
+      if (minHand)  { minHand.setAttribute("x2",  mPt.x); minHand.setAttribute("y2",  mPt.y); }
+      if (secHand)  { secHand.setAttribute("x2",  sPt.x); secHand.setAttribute("y2",  sPt.y); }
+ 
+      const dig = document.getElementById("clock-digital");
+      if (dig) {
+        const hh = String(now.getHours()).padStart(2,"0");
+        const mm = String(m).padStart(2,"0");
+        const ss = String(s).padStart(2,"0");
+        dig.textContent = hh + ":" + mm + ":" + ss;
+      }
+      requestAnimationFrame(updateClock);
+    }
+    updateClock();
+
+

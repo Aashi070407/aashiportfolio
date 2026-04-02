@@ -9,6 +9,8 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
     />
+
+    <link rel="icon" href="favicon.png" type="image/png" />
   </head>
   <body class="spring">
     <!-- Custom Cursor -->
@@ -23,6 +25,8 @@
     <div class="particles-layer" id="layer-rain"></div>
     <div class="particles-layer" id="layer-snow"></div>
     <div class="particles-layer" id="layer-summer"></div>
+    <!-- Add this missing particle layer after layer-summer -->
+    <div class="particles-layer" id="layer-autumn"></div>
 
     <!-- ======= HEADER ======= -->
     <header>
@@ -35,6 +39,7 @@
         <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#projects">Projects</a>
+        <a href="#experience">My Journey</a>
         <a href="#contact">Contact</a>
       </nav>
 
@@ -47,24 +52,32 @@
             ><i class="fab fa-twitter"></i
           ></a>
           <a
-            href="https://linkedin.com/in/yourusername"
+            href="https://linkedin.com/in/aashi-garg-940976329"
             target="_blank"
             rel="noopener"
             ><i class="fab fa-linkedin"></i
           ></a>
           <a
-            href="https://github.com/yourusername"
+            href="https://github.com/Aashi070407"
             target="_blank"
             rel="noopener"
             ><i class="fab fa-github"></i
           ></a>
           <a
-            href="https://instagram.com/yourusername"
+            href="https://instagram.com/Aashi070407"
             target="_blank"
             rel="noopener"
             ><i class="fab fa-instagram"></i
           ></a>
+          <button id="mute-toggle" title="Toggle music">
+            <i class="fa-solid fa-play"></i>
+          </button>
+          <audio id="bg-music" loop></audio>
         </nav>
+
+        <!-- <button id="mute-toggle" title="Toggle music">
+          <i class="fa-solid fa-play"></i>
+        </button> -->
         <button id="theme-toggle" title="Change theme">🌸</button>
         <button class="hamburger" id="hamburger" aria-label="Menu">
           <span></span><span></span><span></span>
@@ -103,7 +116,73 @@
           <div class="card-3d-wrapper">
             <div class="card-3d" id="hero-card">
               <div class="card-3d-inner">
-                <div class="card-avatar">👩‍💻</div>
+                <div class="clock-box" id="clock-box">
+                  <svg
+                    id="hero-clock"
+                    viewBox="0 0 100 100"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <!-- Face -->
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="46"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      opacity="0.2"
+                    />
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="42"
+                      fill="rgba(255,255,255,0.06)"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      opacity="0.3"
+                    />
+                    <!-- Hour ticks -->
+                    <g id="clock-ticks" opacity="0.5"></g>
+                    <!-- Hour hand -->
+                    <line
+                      id="clock-hour"
+                      x1="50"
+                      y1="50"
+                      x2="50"
+                      y2="24"
+                      stroke="currentColor"
+                      stroke-width="3.5"
+                      stroke-linecap="round"
+                    />
+                    <!-- Minute hand -->
+                    <line
+                      id="clock-min"
+                      x1="50"
+                      y1="50"
+                      x2="50"
+                      y2="16"
+                      stroke="currentColor"
+                      stroke-width="2.5"
+                      stroke-linecap="round"
+                    />
+                    <!-- Second hand -->
+                    <line
+                      id="clock-sec"
+                      x1="50"
+                      y1="50"
+                      x2="50"
+                      y2="13"
+                      stroke="var(--accent)"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                    />
+                    <!-- Centre dot -->
+                    <circle cx="50" cy="50" r="3.5" fill="var(--accent)" />
+                    <circle cx="50" cy="50" r="1.5" fill="white" />
+                  </svg>
+                  <div class="clock-digital" id="clock-digital">00:00:00</div>
+                </div>
+
                 <div class="card-stats">
                   <div class="stat-box">
                     <div class="stat-val">2+</div>
@@ -152,8 +231,10 @@
 
       <div class="about-grid">
         <div class="about-image-wrap reveal">
-          <div class="about-img-box">👩‍💻</div>
-          <div class="about-badge">🚀 2nd Year CS Student</div>
+          <div class="about-img-box">
+            <img src="aashi.jpeg" alt=" my pic" />
+          </div>
+          <div class="about-badge">2nd Year CS Student</div>
         </div>
         <div class="about-content reveal">
           <h3>Building the Future,<br /><em>One Line at a Time</em></h3>
@@ -169,14 +250,14 @@
             something new.
           </p>
           <div class="about-tags">
-            <span class="about-tag">🌐 Web Dev</span>
-            <span class="about-tag">⛓️ Blockchain</span>
-            <span class="about-tag">🎨 UI Design</span>
-            <span class="about-tag">📱 Responsive</span>
-            <span class="about-tag">🔥 JavaScript</span>
+            <span class="about-tag"> Web Dev</span>
+            <span class="about-tag"> Blockchain</span>
+            <span class="about-tag"> UI Design</span>
+            <span class="about-tag"> Responsive</span>
+            <span class="about-tag"> JavaScript</span>
           </div>
-          <a href="#contact" class="btn btn-primary"
-            ><i class="fas fa-download"></i> Download CV</a
+          <a href="aashi resume (1).pdf" class="btn btn-primary"
+            ><i class="fas fa-download"></i> View CV</a
           >
         </div>
       </div>
@@ -291,6 +372,146 @@
       </div>
     </section>
 
+    <section
+      id="experience"
+      style="padding: 120px 0; position: relative; z-index: 2"
+    >
+      <div class="section-header reveal">
+        <div class="section-eyebrow">My Journey</div>
+        <h2 class="section-title">Experience & Education</h2>
+        <p class="section-subtitle">
+          Open source contributions, hackathons, and academic milestones.
+        </p>
+      </div>
+
+      <div style="max-width: 800px; margin: 0 auto; padding: 0 5%">
+        <!-- Timeline -->
+        <div class="timeline">
+          <!-- Entry 1 -->
+          <div class="tl-item reveal">
+            <div class="tl-dot"><i class="fas fa-code-branch"></i></div>
+            <div class="tl-line"></div>
+            <div class="tl-card">
+              <div class="tl-meta">
+                <span class="tl-badge tl-badge-green">Open Source</span>
+                <span class="tl-date">June 2025 – aug 2025</span>
+              </div>
+              <h3 class="tl-title">
+                Open Source Contributor — Social Summer of Code
+              </h3>
+              <p class="tl-desc">
+                Contributing to <strong>NotesApp</strong> and
+                <strong>WebDevIn100Days</strong> — implementing new features,
+                fixing bugs, enhancing UI/UX, and collaborating via GitHub
+                issues &amp; PRs.
+              </p>
+              <div class="tl-tags">
+                <span class="project-tag">HTML/CSS/JS</span>
+                <span class="project-tag">GitHub</span>
+                <span class="project-tag">UI/UX</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Entry 2 -->
+          <div class="tl-item reveal">
+            <div class="tl-dot"><i class="fas fa-laptop-code"></i></div>
+            <div class="tl-line"></div>
+            <div class="tl-card">
+              <div class="tl-meta">
+                <span class="tl-badge tl-badge-purple">Open Source</span>
+                <span class="tl-date">July 2025 – aug 2025</span>
+              </div>
+              <h3 class="tl-title">
+                Open Source Contributor — GirlScript Summer of Code (GSSoC 2025)
+              </h3>
+              <p class="tl-desc">
+                Improving frontend UI across open-source repositories, writing
+                clean maintainable code, and actively participating in community
+                discussions and PR reviews.
+              </p>
+              <div class="tl-tags">
+                <span class="project-tag">React</span>
+                <span class="project-tag">Frontend</span>
+                <span class="project-tag">Community</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Entry 3 – Hackathons -->
+          <div class="tl-item reveal">
+            <div class="tl-dot"><i class="fas fa-trophy"></i></div>
+            <div class="tl-line"></div>
+            <div class="tl-card">
+              <div class="tl-meta">
+                <span class="tl-badge tl-badge-orange">Hackathons</span>
+                <span class="tl-date">2024 – 2025</span>
+              </div>
+              <h3 class="tl-title">Hackathon Projects</h3>
+              <div class="hack-list">
+                <div class="hack-item">
+                  <span class="hack-icon"></span>
+                  <div>
+                    <strong>MedPix</strong>
+                    <span>Health-tech platform — CodeGenesis Hackathon</span>
+                  </div>
+                </div>
+                <div class="hack-item">
+                  <span class="hack-icon"></span>
+                  <div>
+                    <strong>Smart Delhi Safety App</strong>
+                    <span
+                      >Finalist — Smart Delhi Ideathon (women's safety)</span
+                    >
+                  </div>
+                </div>
+                <div class="hack-item">
+                  <span class="hack-icon"></span>
+                  <div>
+                    <strong>Smart Parking Tool</strong>
+                    <span>Real-time parking management — Hack With MAIT</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Entry 4 – Education -->
+          <div class="tl-item reveal">
+            <div class="tl-dot"><i class="fas fa-graduation-cap"></i></div>
+            <div class="tl-card">
+              <div class="tl-meta">
+                <span class="tl-badge tl-badge-blue">Education</span>
+                <span class="tl-date">Aug 2024 – July 2028</span>
+              </div>
+              <h3 class="tl-title">B.Tech — Computer Science & Engineering</h3>
+              <p class="tl-desc">
+                Maharaja Agrasen Institute of Technology, Delhi
+              </p>
+              <div
+                style="
+                  display: flex;
+                  align-items: center;
+                  gap: 12px;
+                  margin-top: 12px;
+                "
+              >
+                <div class="stat-box" style="padding: 10px 16px">
+                  <div class="stat-val" style="font-size: 20px">9.3</div>
+                  <div class="stat-label">Current CGPA</div>
+                </div>
+                <div class="tl-tags" style="margin: 0">
+                  <span class="project-tag">Web Dev</span>
+                  <span class="project-tag">Open Source</span>
+                  <span class="project-tag">Hackathons</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ======= CONTACT ======= -->
     <section id="contact">
       <div class="section-header reveal">
@@ -315,14 +536,14 @@
               </div>
               <div class="contact-item-text">
                 <div class="label">Email</div>
-                <div class="val">your@email.com</div>
+                <div class="val">gargaashi752@gmail.com</div>
               </div>
             </div>
             <div class="contact-item">
               <div class="contact-item-icon"><i class="fas fa-phone"></i></div>
               <div class="contact-item-text">
                 <div class="label">Phone</div>
-                <div class="val">+91 XXXXX XXXXX</div>
+                <div class="val">+91 82950 39951</div>
               </div>
             </div>
             <div class="contact-item">
@@ -378,7 +599,7 @@
 
     <!-- ======= FOOTER ======= -->
     <footer>
-      <p>© 2026 <strong>Aashi</strong> — Built with ❤️ from Delhi</p>
+      <p>© 2026 <strong>Aashi</strong> — Built with love from Delhi</p>
       <div class="footer-socials">
         <a href="https://twitter.com/Aashi070407" target="_blank" rel="noopener"
           ><i class="fab fa-twitter"></i
