@@ -688,6 +688,17 @@ nav.main-nav a:hover {
   background: #22c55e;
   animation: blink 1.5s 0.5s infinite;
 }
+/* clock-date box */
+.clock-date-box {
+  display: flex;
+}
+
+.clock-cal-divider {
+  width: 1px;
+  height: 70px;
+  background: var(--border);
+  flex-shrink: 0;
+}
 
 /* /* Clock  */
 
@@ -763,6 +774,60 @@ nav.main-nav a:hover {
   text-align: center;
   width: fit-content;
 }
+
+/* date */
+
+.date-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* center vertically */
+  gap: 12px;
+  width: 150px; /* Adjust size as needed */
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.08); /* glass effect */
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px); /* glass blur */
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  color: var(--text);
+  margin: 0 auto; /* center horizontally */
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.date-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.25);
+}
+
+.cal-month {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.cal-day {
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--text);
+  line-height: 1;
+  font-family: var(--font-display);
+}
+
+.cal-week {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: var(--text2);
+  line-height: 1;
+}
+
+/* card stats=================================== */
 .card-stats {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1132,9 +1197,9 @@ nav.main-nav a:hover {
   background: var(--glass);
 }
 
-/* ============================================================
+/* ===========================================================
          PROJECTS
-      ============================================================ */
+  ============================================================ */
 #projects {
   padding: 120px 0;
 }

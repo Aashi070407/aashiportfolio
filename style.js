@@ -489,6 +489,16 @@ buildRow("r2", row2Pills);
       if (ticksG) ticksG.appendChild(line);
     }
  
+function updateCalendar() {
+  const now = new Date();
+  const months  = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
+  const days    = ["SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY"];
+  document.getElementById("cal-month").textContent = months[now.getMonth()];
+  document.getElementById("cal-day").textContent   = String(now.getDate()).padStart(2,"0");
+  document.getElementById("cal-week").textContent  = days[now.getDay()];
+}
+updateCalendar();
+
     function updateClock() {
       const now = new Date();
       const h = now.getHours() % 12, m = now.getMinutes(), s = now.getSeconds();
