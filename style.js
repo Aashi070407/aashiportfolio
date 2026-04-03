@@ -355,8 +355,35 @@ document.addEventListener("visibilitychange", () => {
 }
       }
     
-    
- 
+ /* ============================================================
+       tech stack
+    ============================================================ */
+
+      
+    const row1Pills = [
+  {ico:"⚛",label:"React.js"},{ico:"🟨",label:"JavaScript"},
+  {ico:"🍃",label:"MongoDB"},{ico:"🟢",label:"Node.js"},
+  {ico:"🔷",label:"TypeScript"},{ico:"🌐",label:"HTML5"},
+  {ico:"🎨",label:"CSS3"},{ico:"⛓",label:"Solidity"},
+];
+const row2Pills = [
+  {ico:"🐙",label:"GitHub"},{ico:"☕",label:"Java"},
+  {ico:"🔌",label:"REST API"},{ico:"🌍",label:"Web3.js"},
+  {ico:"💡",label:"Figma"},{ico:"⚙️",label:"VS Code"},
+  {ico:"🔐",label:"Smart Contracts"},{ico:"🖼",label:"Canva"},
+];
+function buildRow(id, pills) {
+  const track = document.getElementById(id);
+  [...pills, ...pills].forEach(p => { // duplicate for seamless loop
+    const el = document.createElement("div");
+    el.className = "tech-pill";
+    el.innerHTML = `<span class="ico">${p.ico}</span><span>${p.label}</span>`;
+    track.appendChild(el);
+  });
+}
+buildRow("r1", row1Pills);
+buildRow("r2", row2Pills);
+  
     /* ============================================================
        3D CARD MOUSE TILT
     ============================================================ */
