@@ -489,15 +489,24 @@ buildRow("r2", row2Pills);
       if (ticksG) ticksG.appendChild(line);
     }
  
-function updateCalendar() {
-  const now = new Date();
-  const months  = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
-  const days    = ["SUNDAY","MONDAY","TUESDAY","WEDNESDAY","THURSDAY","FRIDAY","SATURDAY"];
-  document.getElementById("cal-month").textContent = months[now.getMonth()];
-  document.getElementById("cal-day").textContent   = String(now.getDate()).padStart(2,"0");
-  document.getElementById("cal-week").textContent  = days[now.getDay()];
-}
-updateCalendar();
+const today = new Date();
+
+// Arrays for month & weekday names
+const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", 
+                "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+
+const days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", 
+              "THURSDAY", "FRIDAY", "SATURDAY"];
+
+// Get values
+const month = months[today.getMonth()];
+const day = String(today.getDate()).padStart(2, '0');
+const weekDay = days[today.getDay()];
+
+// Update HTML
+document.getElementById("cal-month").innerText = month;
+document.getElementById("cal-day").innerText = day;
+document.getElementById("cal-week").innerText = weekDay;
 
     function updateClock() {
       const now = new Date();
