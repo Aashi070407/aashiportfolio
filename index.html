@@ -39,6 +39,7 @@
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
       <a href="#experience">My Journey</a>
+       <a href="#github"> Open source</a>
       <a href="#contact">Contact</a>
     </nav>
 
@@ -121,11 +122,13 @@
                 </div>
 
                 <div class="date-box" id="date-box">
-                  
-                    <div class="cal-month" id="cal-month">APR</div>
-                    <div class="cal-day" id="cal-day">03</div>
-                    <div class="cal-week" id="cal-week">FRIDAY</div>
-                  
+
+                  <div class="cal-month" id="cal-month">APR</div>
+                  <div class="cal-day" id="cal-day">03</div>
+                  <div class="cal-week" id="cal-week">FRIDAY</div>
+                  <div class="cal-weather-icon" id="cal-weather-icon">⛅</div>
+                  <div class="cal-temp" id="cal-temp">--°C</div>
+                  <div class="cal-week" id="cal-desc">Delhi</div>
                 </div>
 
               </div>
@@ -489,6 +492,76 @@
       </div>
     </div>
   </section>
+<!--  ======================github============ -->
+  <section id="github" style="padding: 100px 0; position: relative; z-index: 2;">
+    <div class="section-header reveal">
+      <div class="section-eyebrow">Open Source</div>
+      <h2 class="section-title">GitHub Activity</h2>
+      <p class="section-subtitle">My contributions and coding streak — every square counts.</p>
+    </div>
+
+    <div class="github-wrap reveal">
+
+      <!-- Stats Cards Row -->
+      <div class="github-stats-row">
+        <div class="github-stat-card">
+          <i class="fab fa-github" style="font-size:22px; color:var(--accent);"></i>
+          <div class="github-stat-val" id="gh-repos">—</div>
+          <div class="github-stat-label">Public Repos</div>
+        </div>
+        <div class="github-stat-card">
+          <i class="fas fa-star" style="font-size:22px; color:var(--accent);"></i>
+          <div class="github-stat-val" id="gh-stars">—</div>
+          <div class="github-stat-label">Stars Earned</div>
+        </div>
+        <div class="github-stat-card">
+          <i class="fas fa-code-branch" style="font-size:22px; color:var(--accent);"></i>
+          <div class="github-stat-val" id="gh-forks">—</div>
+          <div class="github-stat-label">Total Forks</div>
+        </div>
+        <div class="github-stat-card">
+          <i class="fas fa-users" style="font-size:22px; color:var(--accent);"></i>
+          <div class="github-stat-val" id="gh-followers">—</div>
+          <div class="github-stat-label">Followers</div>
+        </div>
+      </div>
+
+      <!-- Contribution Calendar -->
+      <div class="github-calendar-card">
+        <div class="github-calendar-header">
+          <div style="display:flex; align-items:center; gap:10px;">
+            <div class="gh-avatar">A</div>
+            <div>
+              <div style="font-size:15px; font-weight:700; color:var(--text);">Aashi070407</div>
+              <div style="font-size:12px; color:var(--text2);">Contribution Graph</div>
+            </div>
+          </div>
+          <a href="https://github.com/Aashi070407" target="_blank" rel="noopener" class="btn btn-secondary"
+            style="font-size:13px; padding:8px 18px; text-decoration:none;">
+            <i class="fab fa-github"></i> View Profile
+          </a>
+        </div>
+
+        <!-- Calendar injected here -->
+        <div class="calendar-box">
+          <div class="calendar"></div>
+        </div>
+      </div>
+
+      <!-- Streak Image -->
+      <div class="github-streak-card">
+        <img
+          src="https://github-readme-streak-stats.herokuapp.com/?user=Aashi070407&theme=transparent&hide_border=true&stroke=var(--accent)&ring=var(--accent)&fire=var(--accent)&currStreakLabel=var(--accent)&sideLabels=var(--text2)&dates=var(--text2)&background=00000000"
+          alt="GitHub Streak" style="width:100%; max-width:500px; display:block; margin:0 auto;"
+          onerror="this.style.display='none'" />
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GitHub Calendar scripts (put in <head> or before </body>) -->
+  <link rel="stylesheet" href="https://unpkg.com/github-calendar@latest/dist/github-calendar-responsive.css" />
+  <script src="https://unpkg.com/github-calendar@latest/dist/github-calendar.min.js"></script>
 
   <!-- ======= CONTACT ======= -->
   <section id="contact">
